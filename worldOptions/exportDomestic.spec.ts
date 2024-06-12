@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { TIMEOUT } from "dns";
 
 test('Export domestic shipment',async({page})=>{
     await page.goto("https://prelive-au-customer.worldoptions.com/#/Login")
@@ -17,7 +18,6 @@ test('Export domestic shipment',async({page})=>{
     await page.getByText("Queensland").click()
     await page.getByPlaceholder("City").nth(1).fill("BRISBANE CITY")
     await page.locator("[formcontrolname='PostalCode']").nth(1).fill("4000")
-    //await page.getByText("Postcode").nth(1).click()
     await page.getByPlaceholder("Area").nth(1).fill("044")
     await page.getByPlaceholder("Phone number").nth(1).fill("866769")
     await page.getByPlaceholder("Email address").nth(1).fill("sathish@gmail.com")
@@ -36,5 +36,13 @@ test('Export domestic shipment',async({page})=>{
     await page.getByPlaceholder("H",{exact:true}).fill("30")
     await page.getByRole('button', { name: 'Quote' }).click()
     await page.waitForTimeout(6000)
+    await page.getByRole('button', { name: 'Ok' }).click()
+    await page.getByRole("button",{name :'Next'}).click()
+    await expect(spinner,'Page loading completed').not.toBeVisible({timeout:10000})
+    //await page.waitForTimeout(6000)
+    const collection = page.locator("//p[text()='Drop at a Depot']/preceding::div[5]")
+    await collection.waitFor({timeout:60000})
+    await collection.click()
+    await page.waitForTimeout(2000)
 
 })

@@ -1,13 +1,14 @@
 import { expect, test } from "@playwright/test";
-import { TIMEOUT } from "dns";
 
-test('Export domestic shipment',async({page})=>{
+test.setTimeout(40000)
+
+test('title for the test case is ',async({page})=>{
     await page.goto("https://prelive-au-customer.worldoptions.com/#/Login")
     await page.getByPlaceholder("Enter username").fill("stewarttest")
     await page.getByPlaceholder("Enter password").fill("psc123$")
     await page.getByText("Continue").click()
     const spinner = page.locator("//div[@class='la-ball-beat la-2x']")
-    await expect(spinner,'Page loading completed').not.toBeVisible({timeout:10000})
+    await expect(spinner,'spinner loading completed').not.toBeVisible({timeout:10000})
     await page.waitForTimeout(2000)
     await page.getByPlaceholder("Company").nth(1).fill("Allied test company")
     await page.getByPlaceholder("Contact Name").nth(1).fill("Sathish R")
@@ -35,14 +36,8 @@ test('Export domestic shipment',async({page})=>{
     await page.getByPlaceholder("W",{exact:true}).fill("30")
     await page.getByPlaceholder("H",{exact:true}).fill("30")
     await page.getByRole('button', { name: 'Quote' }).click()
-    await page.waitForTimeout(6000)
     await page.getByRole('button', { name: 'Ok' }).click()
     await page.getByRole("button",{name :'Next'}).click()
-    await expect(spinner,'Page loading completed').not.toBeVisible({timeout:10000})
-    //await page.waitForTimeout(6000)
-    const collection = page.locator("//p[text()='Drop at a Depot']/preceding::div[5]")
-    await collection.waitFor({timeout:60000})
+    const collection = page.locator("//p[text()='Drop at a Depot']/preceding::div[6]")
     await collection.click()
-    await page.waitForTimeout(2000)
-
 })

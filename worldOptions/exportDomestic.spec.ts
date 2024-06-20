@@ -1,4 +1,10 @@
 import { expect, test } from "@playwright/test";
+import  dotenv from "dotenv";
+import path from "path";
+
+const environment = process.env.NODE_ENV || 'testing'
+const envPath = path.resolve(__dirname, `../../test-data/${environment}.env`)
+dotenv.config({path:envPath})
 
 test.setTimeout(40000)
 

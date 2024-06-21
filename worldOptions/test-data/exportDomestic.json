@@ -1,0 +1,47 @@
+[
+    {
+
+        "testTitle": "TC001",   
+        "deliveryCompany": "Sathish test company",
+        "deliveryContactName": "Sathish R",
+        "deliveryAddress1": "100 allied street",
+        "deliveryCountry": "AUSTRALIA",
+        "deliveryState": "Queensland",
+        "deliveryCity": "BRISBANE CITY",
+        "deliveryPostCode": "4000",
+        "deliveryDialCode": "044",
+        "deliveryPhoneNumber": "866769",
+        "deliveryEmail": "sathish@gmail.com",
+        "carrier": "Allied Express",
+        "serviceType": "R(Road)",
+        "packageType": "Pallet",
+        "customerReference": "2008",
+        "weight": "30",
+        "length": "30",
+        "width": "30",
+        "height": "30"
+    },
+    
+    {
+        "testTitle": "TC002",   
+        "deliveryCompany": "Yogi test company",
+        "deliveryContactName": "Yogi",
+        "deliveryAddress1": "200 allied street",
+        "deliveryCountry": "AUSTRALIA",
+        "deliveryState": "New South Wales",
+        "deliveryCity": "SYDNEY",
+        "deliveryPostCode": "2000",
+        "deliveryDialCode": "044",
+        "deliveryPhoneNumber": "955155",
+        "deliveryEmail": "yogi@yahoo.com",
+        "carrier": "Allied Express",
+        "serviceType": "R(Road)",
+        "packageType": "Carton",
+        "customerReference": "2005",
+        "weight": "20",
+        "length": "30",
+        "width": "20",
+        "height": "10"
+    }
+
+]

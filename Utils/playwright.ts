@@ -1,4 +1,4 @@
-import { test,Page,BrowserContext } from "@playwright/test";
+import { test,Page,BrowserContext, Locator } from "@playwright/test";
 import path from "path";
 
 export abstract class PlaywrightWrapper{
@@ -12,7 +12,7 @@ export abstract class PlaywrightWrapper{
 
     async loadAppUrl(url:string): Promise<void>{
         try {
-           await test.step(`The URL ${url} was loaded`, async () => {
+           await test.step(`The URL ${url} loaded successfully!`, async () => {
                 await this.page.goto(url)
             })
             
@@ -24,7 +24,7 @@ export abstract class PlaywrightWrapper{
 
     async type(locator: string, name: string, data: string): Promise<void>{
         try {
-            await test.step(`The Textbox ${name} filled with ${data}`, async () => {
+            await test.step(`The Textbox ${name} filled with ${data} successfully!`, async () => {
                 await this.page.locator(locator).fill(data)
                 
             })
@@ -37,7 +37,7 @@ export abstract class PlaywrightWrapper{
 
     async clearAndType(locator:string, name: string, data: string): Promise<void>{
         try {
-            await test.step(`The Textbox ${name} filled with ${data}`,async () => {
+            await test.step(`The Textbox ${name} filled with ${data} successfully!`,async () => {
                 const element =  this.page.locator(locator)
                 await element.clear()
                 await element.fill(data)
@@ -51,7 +51,7 @@ export abstract class PlaywrightWrapper{
 
     async typeAndEnter(locator: string, name: string, data: string): Promise<void>{
         try {
-            await test.step(`The Textbox ${name} filled with ${data}`,async () => {
+            await test.step(`The Textbox ${name} filled with ${data} successfully!`,async () => {
                 await this.page.locator(locator).fill(data)
                 await this.page.keyboard.press('Enter')
                 
@@ -66,7 +66,7 @@ export abstract class PlaywrightWrapper{
 
     async clickButton(locator: string, name: string, type: string): Promise<void>{
         try {
-            await test.step(`The ${name} and ${type} is clicked`, async () => {
+            await test.step(`The ${name} ${type} is clicked successfully!`, async () => {
                 await this.page.locator(locator).click()
                 
             })
@@ -80,7 +80,7 @@ export abstract class PlaywrightWrapper{
 
     async forceClick(locator: string, name: string, type: string): Promise<void>{
         try {
-            await test.step(`The ${name} and ${type} is clicked`, async () => {
+            await test.step(`The ${name} ${type} is clicked successfully!`, async () => {
                 await this.page.waitForSelector(locator,{state:"attached"})
                 await this.page.locator(locator).click({force:true})
                 

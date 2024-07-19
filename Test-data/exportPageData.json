@@ -1,0 +1,23 @@
+{
+        "testTitle": "TC001",   
+        "delCompany": "Sathish test company",
+        "delContact": "Sathish R",
+        "delAddress1": "200 test street",
+        "delCountry": "AUSTRALIA",
+        "delState": "New South Wales",
+        "delCity": "SYDNEY",
+        "delPostcode": "2000",
+        "delDial": "044",
+        "delPhone": "866769",
+        "delEmail": "sathish@hotmail.com",
+        "carrier": "Border Express",
+        "serviceType": "Parcel",
+        "packageType": "Carton",
+        "customerReference": "2024",
+        "testDescription": "Test shipment",
+        "transitInsurance": "No",
+        "weight": "46",
+        "length": "30",
+        "width": "20",
+        "height": "20"
+}

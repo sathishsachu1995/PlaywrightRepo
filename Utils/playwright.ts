@@ -1,4 +1,4 @@
-import { test,Page,BrowserContext, Locator } from "@playwright/test";
+import { test,Page,BrowserContext,expect } from "@playwright/test";
 import path from "path";
 
 export abstract class PlaywrightWrapper{
@@ -67,6 +67,7 @@ export abstract class PlaywrightWrapper{
     async clickButton(locator: string, name: string, type: string): Promise<void>{
         try {
             await test.step(`The ${name} ${type} is clicked successfully!`, async () => {
+                await this.page.waitForSelector(locator,{state:'visible'})
                 await this.page.locator(locator).click()
                 
             })
@@ -93,6 +94,20 @@ export abstract class PlaywrightWrapper{
 
     }
 
+    async clickAndType(locator:string, name: string, data: string): Promise<void>{
+        try {
+            await test.step(`The Textbox ${name} clicked and filled with ${data} successfully!`,async () => {
+                const element =  this.page.locator(locator)
+                await element.click()
+                await element.fill(data)
+            })
+            
+        } catch (error) {
+
+            console.error(`The Error message received when clicking and entering data is ${error}`)
+        }
+    }
+
     async storage(path: string): Promise<void>{
         try {
             this.context.storageState({path})
@@ -102,4 +117,58 @@ export abstract class PlaywrightWrapper{
         }
 
     }
+
+    async spin(locator: string){
+        const spinner = this.page.locator(locator)
+        await expect(spinner,'spinner loading completed').not.toBeVisible({timeout:30000})
+    }
+
+    async locatorChainingClick(dropDownName : string ,name: string,tagName: string):Promise<void>{
+        try {
+            test.step(`The DropDown ${dropDownName} ${name} is clicked successfully!`,async () => {
+                this.page.getByRole('option',{name: name}).locator(tagName).click()
+                
+            })
+            
+        } catch (error) {
+
+            console.error(`The Error message received when clicking the dropdown is ${error}`)
+            
+        }
+        
+
+    }
+
+    async locatorWithFilter(locator: string,text: string,type:string): Promise<void>{
+        try {
+            test.step(`${type} is clicked successfully!`,async () => {
+                await this.page.locator(locator).filter({hasText:text}).click()
+                
+            })
+            
+        } catch (error) {
+
+            console.error(`The Error message received when clicking the ${type} is ${error}`)   
+        }
+        
+
+    }
+    async locatingPopup(locator: string):Promise<boolean>{
+        this.page.locator(locator).first()
+        return true
+
+    }
+
+    async getErrorMessage(locator:string): Promise<void>{
+        const errorMessage = await this.page.locator(locator).innerText()
+        console.log(`The error message we are getting : ${errorMessage}`);
+    }
+
+    async getQuoteMessage(locator:string):Promise<void>{
+        const quoteMessage = await this.page.locator(locator).first().innerText()
+        console.log(`The rates we are getting : ${quoteMessage}`);
+        
+    }
+
+    
 }

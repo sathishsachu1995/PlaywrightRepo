@@ -37,17 +37,23 @@ export class ExportDomesticPage extends PlaywrightWrapper{
         await this.type(`//input[@placeholder='H']`,`Height`,heightCM)
         await this.clickButton(`//button[text()='Quote']`,`Quote`,`Button`)
         await this.spin("//div[@class='la-ball-beat la-2x']")
-        const popup = await this.locatingPopup(`#quoteDialog`)
-        
-        if (popup==true) {
-            await this.getQuoteMessage(`.service-wrapper`)   
-        } 
-        else{
-            await this.getErrorMessage(`#toast-container`)
+        try {
+            const quotePopup = await this.locatingPopup(`#quoteDialog`)
+            if (quotePopup) {
+                await this.getQuoteMessage(`.service-wrapper`)   
+            } 
+            else{
+                await this.getErrorMessage(`#toast-container`)
+    
+            }    
 
-        }    
-        
-
+        } catch (error) {
+            console.error(`The error received while getting rates ${error}`)
+            
+        }  
+        await this.clickButton(`//span[text()='Ok']`,`OkButton`,`Button`)
+        await this.clickButton(`(//button[text()='Next'])[1]`,`NextButton`,`Button`)
+        await this.spin("//div[@class='la-ball-beat la-2x']")
     }
 
 }

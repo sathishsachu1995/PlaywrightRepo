@@ -154,9 +154,16 @@ export abstract class PlaywrightWrapper{
 
     }
     async locatingPopup(locator: string):Promise<boolean>{
-        this.page.locator(locator).first()
-        return true
-
+        try {
+            await this.page.waitForSelector(locator,{state:'visible'})
+            const element = this.page.locator(locator).first()
+            return true
+            
+        } catch (error) {
+            console.error(`Error while locating an element: ${error}`)
+            return false    
+        }
+        
     }
 
     async getErrorMessage(locator:string): Promise<void>{

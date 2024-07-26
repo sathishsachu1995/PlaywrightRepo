@@ -1,0 +1,23 @@
+{
+        "testTitle": "TC001 creating Domestic shipment",   
+        "delCompany": "Sathish test company",
+        "delContact": "Sathish R",
+        "delAddress1": "200 test street",
+        "delCountry": "AUSTRALIA",
+        "delState": "New South Wales",
+        "delCity": "SYDNEY",
+        "delPostcode": "2000",
+        "delDial": "044",
+        "delPhone": "866769",
+        "delEmail": "sathish@hotmail.com",
+        "carrier": "Allied Express",
+        "serviceType": "R(Road)",
+        "packageType": "Carton",
+        "customerReference": "2007",
+        "testDescription": "Test shipment",
+        "transitInsurance": "No",
+        "weight": "29.1",
+        "length": "30",
+        "width": "20",
+        "height": "20"
+}

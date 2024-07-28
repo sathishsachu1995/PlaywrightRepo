@@ -34,10 +34,7 @@ export class LabelsAndDocumentsPage extends PlaywrightWrapper{
     }
 
     async clickingViewReceipt(): Promise<void>{
-        await this.clickButton(`//button[text()=' VIEW RECEIPT ']`,`View Receipt`,`Button`)
-        const receiptPageTitile = await this.getPageTitle()
-        expect(receiptPageTitile,`Receipt Generated successfully!!`).toMatch("Receipt")
-
+        await this.handlingMultiplePages(`//button[text()=' VIEW RECEIPT ']`,`Receipt`)
     }
 
     async labelsAndDocumentsPageSpinner(): Promise<void>{

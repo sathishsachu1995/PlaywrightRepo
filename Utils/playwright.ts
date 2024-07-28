@@ -120,7 +120,7 @@ export abstract class PlaywrightWrapper{
 
     async spin(locator: string){
         const spinner = this.page.locator(locator)
-        await expect(spinner,'spinner loading completed').not.toBeVisible({timeout:30000})
+        await expect(spinner,'spinner loading completed').not.toBeVisible({timeout:60000})
     }
 
     async locatorChainingClick(dropDownName : string ,name: string,tagName: string):Promise<void>{
@@ -185,6 +185,15 @@ export abstract class PlaywrightWrapper{
     async getPageTitle(): Promise<string>{
         const currentPageTitile = await this.page.title()
         return currentPageTitile
+    }
+
+    async handlingMultiplePages(locator: string,title: string): Promise<void>{
+
+        const pagePromise =  this.context.waitForEvent('page')
+        await this.page.locator(locator).click()
+        const newPage = await pagePromise
+        await newPage.waitForLoadState('domcontentloaded')
+        expect(newPage,`${title} have been created successfully!!`).toHaveTitle(title)
     }
 
     

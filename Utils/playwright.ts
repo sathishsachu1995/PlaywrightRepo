@@ -165,6 +165,11 @@ export abstract class PlaywrightWrapper{
         
     }
 
+    async locatingElement(locator: string): Promise<void>{
+        this.page.locator(locator)
+
+    }
+
     async getErrorMessage(locator:string): Promise<void>{
         const errorMessage = await this.page.locator(locator).innerText()
         console.log(`The error message we are getting : ${errorMessage}`);
